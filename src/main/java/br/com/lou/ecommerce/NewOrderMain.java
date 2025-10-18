@@ -13,11 +13,11 @@ import java.util.concurrent.ExecutionException;
 public class NewOrderMain {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         var producer = new KafkaProducer<String, String>(properties());
-        var value = "id_pedido:23, id_usuario:2356, valor_compra:600 ";
+        var value = "id_pedido:26, id_usuario:333, valor_compra:250 ";
         var record = new ProducerRecord<String, String>("ECOMMERCE_NEW_ORDER", value, value);
 
         var email = "Thak you for your dorder! We are processing your order";
-        var emailRecord = new ProducerRecord<String, String>("ECCOMERCE_SEND_EMAIL", email, email);
+        var emailRecord = new ProducerRecord<String, String>("ECOMMERCE_SEND_EMAIL", email, email);
 
         producer.send(record, getCallback()).get();
         producer.send(emailRecord, getCallback()).get();
